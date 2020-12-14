@@ -21,7 +21,7 @@ pipeline {
                 dir('coronadata/tests') {
                     script{
                         try {
-                            sh "sudo /home/gleb/JenkinsProject/coronadata/tests/basic.test.sh"
+                            sh "sudo /var/jenkins_home/workspace/Auto_CI_Pipeline/coronadata/tests/basic.test.sh"
                         } catch (err) {
                             println("Error thrown on test file execution")
                             currentBuild.result = 'ABORTED'
