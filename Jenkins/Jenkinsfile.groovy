@@ -21,7 +21,7 @@ pipeline {
                 dir('coronadata/tests') {
                     script{
                         try {
-                            sh "./basic.test.sh"
+                            sh "sudo ./basic.test.sh"
                         } catch (err) {
                             println("Error thrown on test file execution")
                             currentBuild.result = 'ABORTED'
