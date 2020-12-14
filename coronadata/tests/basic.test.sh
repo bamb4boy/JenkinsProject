@@ -10,7 +10,7 @@ check_result () {
   fi
 }
 
-for output in confirmed recovered deaths; do
+for output in confirmed; do
   sudo docker run coronadata | grep $output
   check_result $output
 done
