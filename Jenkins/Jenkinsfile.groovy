@@ -9,16 +9,16 @@ pipeline {
     stages {
         stage('Build Docker image') {
             steps {
-                dir('intservice'){
+                dir('coronadata'){
                     script {
-                        sh "sudo docker build -t intservice ."
+                        sh "sudo docker build -t coronadata ."
                     }
                 }
             }
         }
         stage('Test Docker image') {
             steps {
-                dir('intservice/tests') {
+                dir('coronadata/tests') {
                     script{
                         try {
                             sh "./basic.test.sh"
@@ -47,7 +47,7 @@ pipeline {
 
                 2. copy the docker image to the target server
                 docker save intservice:latest > /var/jenkins_home/intService/intservice.tar    || docker.hub docker push docker.io/intservice/intservice:latest
-                scp "/var/jenkins_home/intService/intservice.tar ubuntu@${prod_server_ip}:/tmp"
+                scp "/var/jenkins_home/coronadata/coronadata.tar ubuntu@${prod_server_ip}:/tmp"
 
                 3. run the container
                 ssh ubuntu@${prod_server_ip} sudo docker load < /tmp/intservice.tar
