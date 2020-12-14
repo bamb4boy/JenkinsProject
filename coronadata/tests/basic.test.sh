@@ -10,9 +10,9 @@ check_result () {
   fi
 }
 
-for sentiment in positive negative neutral; do
-  sudo docker run coronadata -w $sentiment | grep $sentiment
-  check_result $sentiment
+for output in confirmed recovered deaths; do
+  sudo docker run coronadata | grep $output
+  check_result $output
 done
 
 exit 0
