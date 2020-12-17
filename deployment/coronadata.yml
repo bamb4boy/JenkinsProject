@@ -1,0 +1,52 @@
+---
+- name: corona data app deployment
+  hosts: coronadata
+        tasks:
+          - name: Make sure docker is installed
+            apt:
+              name: docker.io
+              state: present
+              update_cache: yes
+            become: yes
+
+          - name: Start  docker service
+            service:
+              name: docker
+              state: started
+            become: yes
+
+          - name: export image
+            shell: "docker save coronadata:latest > /tmp/coronadata.tar"
+            become: yes
+            delegate_to: 127.0.0.1
+
+          - name: set permissions
+            file:
+              path: /tmp/coronadata.tar
+              owner: ubuntu
+              group: ubuntu
+              mode: '0777'
+            become: yes
+            delegate_to: 127.0.0.1
+
+
+          - name: Copy Docker image to remote location
+            copy:
+              src: /tmp/coronadata.tar
+              dest: /tmp/coronadata.tar
+
+
+          - name: Load Docker image
+            docker_image:
+              name: coronadata
+              tag: latest
+              load_path: /tmp/coronadata.tar
+            become: yes
+
+
+
+
+
+
+
+

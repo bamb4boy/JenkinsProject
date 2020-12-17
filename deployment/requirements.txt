@@ -1,0 +1,5 @@
+home work
+install ansible on jenkins vm
+copy Uri yml file and adjust to my parameters
+copu uris hosts file to add the host private IP
+cupy uris cfg file and correct parameters
