@@ -47,7 +47,7 @@ pipeline {
         stage('Deploy to Prod') {
 	    steps {
 	       script {
-	           dir('/deployment') {
+	           dir('deployment') {
 		       sh "ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=${latest version}-${lastCommit}"
                    }
                }
