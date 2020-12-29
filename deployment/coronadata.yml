@@ -16,7 +16,7 @@
         state: started
 
     - name: Start coronadata container  
-      shell: "docker run bamb4boy/coronadata:latest"
+      shell: "docker run bamb4boy/coronadata:{{ tag }}"
 
 
 
