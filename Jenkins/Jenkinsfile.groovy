@@ -47,8 +47,8 @@ pipeline {
         stage('Deploy to Prod') {
 	    steps {
 	       script {
-	           dir('deployment') {
-		       sh "ansible-playbook -i inventory.ini coronadata.yml tag=${latest version}-${lastCommit}"
+	           dir('/home/gleb/JenkinsProject/deployment') {
+		       sh "ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=${latest version}-${lastCommit}"
                    }
                }
             }
