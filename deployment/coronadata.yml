@@ -16,6 +16,12 @@
           state: started
         become: yes
 
+      - name: Docker pull
+        community.general.docker_image:
+          name: bamb4boy/coronadata
+          repository: bamb4boy/coronadata:{{ tag }}    
+          source: pull
+
       - name: Start coronadata container  
         shell: "docker run bamb4boy/coronadata:{{ tag }}"
 
