@@ -48,7 +48,7 @@ pipeline {
 	    steps {
 	       script {
 	           dir('/home/gleb/JenkinsProject/deployment') {
-		       sh 'sudo ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=\$latestVersion-\$lastCommit'
+		       sh "sudo ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=${latestVersion}-${lastCommit}"
                    }
                }
 
