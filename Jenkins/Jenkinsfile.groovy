@@ -1,4 +1,5 @@
-def userInput
+def lastCommit
+def latestVersion
 
 pipeline {
 
