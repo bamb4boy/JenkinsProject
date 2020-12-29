@@ -17,7 +17,7 @@
         become: yes
 
       - name: Start coronadata container  
-        shell: "docker run glebtyunikov/coronadata:{{ tag }}"
+        shell: "docker run bamb4boy/coronadata:{{ tag }}"
 
 
 
