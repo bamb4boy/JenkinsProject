@@ -48,7 +48,7 @@ pipeline {
 	    steps {
 	       script {
 	           dir('deployment') {
-		       sh '/usr/bin/ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=\${latestVersion}-\${lastCommit}'
+		       sh '/usr/bin/ansible-playbook -i inventory.ini coronadata.yml --extra-vars tag=\$latestVersion-\$lastCommit'
                    }
                }
 
