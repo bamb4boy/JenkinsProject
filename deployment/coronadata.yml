@@ -1,29 +1,28 @@
 ---
-  - name: corona data app deployment
-    hosts: coronadata
-      
-    tasks:
-      - name: Make sure docker is installed
-        apt:
-          name: docker.io
-          state: present
-          update_cache: yes
-        become: yes
+- name: corona data app deployment
+  hosts: coronadata
+  become: yes
 
-      - name: Start  docker service
-        service:
-          name: docker
-          state: started
-        become: yes
+  tasks:
+    - name: Make sure docker is installed
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
 
-      - name: Docker pull
-        community.general.docker_image:
-          name: bamb4boy/coronadata
-          repository: bamb4boy/coronadata:{{ tag }}    
-          source: pull
+    - name: Start  docker service
+      service:
+        name: docker
+        state: started
 
-      - name: Start coronadata container  
-        shell: "docker run bamb4boy/coronadata:{{ tag }}"
+    - name: Docker pull
+      community.general.docker_image:
+        name: bamb4boy/coronadata
+        repository: bamb4boy/coronadata:{{ tag }}    
+        source: pull
+
+    - name: Start coronadata container  
+      shell: "docker run bamb4boy/coronadata:{{ tag }}"
 
 
 
