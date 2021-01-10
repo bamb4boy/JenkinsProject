@@ -7,7 +7,7 @@ services:
       - 3306:3306
     volumes:
       - db_data:/var/lib/mysql
-    enviubunturonment:
+    environment:
       - MYSQL_ROOT_PASSWORD=docker
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
