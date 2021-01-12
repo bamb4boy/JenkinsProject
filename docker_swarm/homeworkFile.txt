@@ -1,0 +1,36 @@
+
+1- Create 2 AWS instances (Free tier)
+2- SSH into the the first server 
+3- Install Docker 
+4- Create a compose file (nginx)
+5- Create a swarm cluster
+
+docker swarm init 
+
+(Copy and save the docker swarm join command )
+
+6- Deploy a new stack:
+
+docker stack deploy mystack -c docker-compose.yml
+
+7- SSH into the second AWS node, using the saved command from step 5
+
+* It should look line this:
+
+docker swarm join --token SWMTKN-1-1u51hprrpipidvazj6cgugodopzk1e9q3fsbi2yznsbo6y0x6q-5uawtff0s5z57ioj4g4tfhxn3 10.110.111.73:2377
+
+* List your cluster nodes and verify all is OK:
+
+docker node ls
+
+8- list your services:
+
+docker service ls
+
+9- Scale the services to 10 container:
+
+docker service scale <your_service>=10
+
+10- list your services and make sure they are running on both cluster nodes
+
+docker service ls
