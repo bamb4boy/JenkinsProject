@@ -1,0 +1,58 @@
+---
+# tasks file for ec2-1
+
+- name: Add the user 'docker', appending the group 'admins' and 'users' to the user's groups
+  user:
+    name: docker
+    groups: users
+    append: yes
+  become: yes
+
+
+- name: Check If Python Is Installed
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Make Sure Docker Is Installed
+  become: yes
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Start Docker Service
+  become: yes
+  service:
+    name: docker
+    state: started
+
+- name: Clone Git Repository
+  git:
+    repo: https://github.com/bamb4boy/JenkinsProject
+    dest: /src/gleb
+  become: yes
+
+- name: make sure docker-py installed
+  become: yes
+  pip:
+    name: docker-py
+
+- name: Log into DockerHub
+  become: yes
+  docker_login:
+    username: "int2020devops"
+    password: "intpassword"
+    api_version: auto
+
+- name: Build an image and push to docker hub
+  become: yes
+  docker_image:
+    build:
+      path: /src/gleb
+    name: coronadata:v1.0
+    repository: int2020devops/ansible
+    push: yes
+    source: build
