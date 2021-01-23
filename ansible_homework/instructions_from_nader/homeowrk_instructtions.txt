@@ -1,0 +1,22 @@
+Please do all steps using Ansible playbooks and roles:
+
+
+Please use the following Python application, in this source code is here: https://github.com/nadergan/devops-course-int.git 
+
+1- Create an instance to be used as an Ansible manager server.
+
+2- Using an Ansible Playbook/Roles, create the following:
+
+   a. A new AWS instance
+   b. On the new instance, install docker
+   c. On the new instance, deploy the code from github.com
+   d. On the new instance, Create a docker image from the code (Dockerfile is already thier)
+   e. On the new instance, Push the image to a dockerhub repo
+
+3- Using an Ansible Playbook/Roles, create the following:
+   a. 3rd instance
+   b. On the 3rd instance, install docker
+   c. On the 3rd instance, Run the docker container from 2 
+
+Good Luck,
+Nader
